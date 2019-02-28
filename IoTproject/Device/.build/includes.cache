@@ -10,27 +10,22 @@
     "Includepath": "C:\\Users\\SiljeDahl\\AppData\\Local\\Arduino15\\packages\\AZ3166\\hardware\\stm32f4\\1.6.1\\variants\\MXChip_AZ3166"
   },
   {
-    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\config.h.cpp",
+    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\device.ino.cpp",
     "Include": "AZ3166WiFi.h",
     "Includepath": "C:\\Users\\SiljeDahl\\AppData\\Local\\Arduino15\\packages\\AZ3166\\hardware\\stm32f4\\1.6.1\\libraries\\WiFi\\src"
   },
   {
-    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\config.h.cpp",
+    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\device.ino.cpp",
     "Include": "DevKitMQTTClient.h",
     "Includepath": "C:\\Users\\SiljeDahl\\AppData\\Local\\Arduino15\\packages\\AZ3166\\hardware\\stm32f4\\1.6.1\\libraries\\AzureIoT\\src"
   },
   {
-    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\config.h.cpp",
+    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\device.ino.cpp",
     "Include": "IoT_DevKit_HW.h",
     "Includepath": "C:\\Users\\SiljeDahl\\AppData\\Local\\Arduino15\\packages\\AZ3166\\hardware\\stm32f4\\1.6.1\\libraries\\Sensors\\src"
   },
   {
-    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\config.h.cpp",
-    "Include": "",
-    "Includepath": ""
-  },
-  {
-    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\utility.cpp",
+    "Sourcefile": "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\.build\\sketch\\device.ino.cpp",
     "Include": "",
     "Includepath": ""
   },

@@ -48,7 +48,7 @@ void setup() {
 
   i2c = new DevI2C(D14, D15);
   sensor = new HTS221Sensor(*i2c);
-   init the sensor
+  //init the sensor
   sensor -> init(NULL);
 }
 
@@ -65,19 +65,23 @@ void loop() {
 
     char res[8];
   
-    dtostrf(temperature, 5, 2, res);
+    dtostrf(temperature, 4, 2, res);
 
-    //char toSend[128];
+    char toSend[128];
+    strcpy(toSend, "{\"temp\": \"");
+    strcat(toSend, res);
+    strcat(toSend, ":\"}");
 
     const char * a = ("{\"temp\": \"", res, ":\"}");
     //const char * a =     
 
     Screen.print(1, res);
     delay(500);
-    Screen.print(1, a);
+    Screen.print(1, toSend);
+    delay(500);
     
     //if (DevKitMQTTClient_SendEvent(buff))
-    if (DevKitMQTTClient_SendEvent(a))
+    if (DevKitMQTTClient_SendEvent(toSend))
     {
       Screen.print(1, "Sending...");
     }

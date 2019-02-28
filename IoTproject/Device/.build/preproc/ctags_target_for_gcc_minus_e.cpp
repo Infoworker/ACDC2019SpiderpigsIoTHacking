@@ -1,9 +1,4 @@
-# 1 "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\config.h"
-# 1 "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\config.h"
-// Copyright (c) Microsoft. All rights reserved.
-// Licensed under the MIT license. 
-
-// Interval time(ms) for sending message to IoT Hub
+# 1 "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\device.ino"
 # 1 "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\device.ino"
 # 2 "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\device.ino" 2
 # 3 "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\device.ino" 2
@@ -55,7 +50,7 @@ void setup() {
 
   i2c = new DevI2C(D14, D15);
   sensor = new HTS221Sensor(*i2c);
-   init the sensor
+  //init the sensor
   sensor -> init(
 # 52 "c:\\Dev\\GitHub\\ACDC2019SpiderpigsIoTHacking\\IoTproject\\Device\\device.ino" 3 4
                 __null
@@ -76,17 +71,23 @@ void loop() {
 
     char res[8];
 
-    dtostrf(temperature, 5, 2, res);
+    dtostrf(temperature, 4, 2, res);
+
+    char toSend[128];
+    strcpy(toSend, "{\"temp\": \"");
+    strcat(toSend, res);
+    strcat(toSend, ":\"}");
 
     const char * a = ("{\"temp\": \"", res, ":\"}");
     //const char * a =     
 
     Screen.print(1, res);
     delay(500);
-    Screen.print(1, a);
+    Screen.print(1, toSend);
+    delay(500);
 
     //if (DevKitMQTTClient_SendEvent(buff))
-    if (DevKitMQTTClient_SendEvent(a))
+    if (DevKitMQTTClient_SendEvent(toSend))
     {
       Screen.print(1, "Sending...");
     }
