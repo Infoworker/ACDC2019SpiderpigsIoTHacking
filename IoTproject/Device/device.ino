@@ -7,10 +7,21 @@
 #include "SystemTickCounter.h"
 #include "telemetry.h"
 
+#include "HTS221Sensor.h"
+
+DevI2C *i2c;
+HTS221Sensor *sensor;
+
+
+
 //#include "config.h"
 //#include "utility.h"
+//#include "SystemTickCounter.h"
 
 
+
+unsigned char id;
+float temperature = 0;
 static bool hasWifi = false;
 static bool hasIoTHub = false;
 
@@ -27,73 +38,46 @@ void setup() {
       return;
     }
     hasIoTHub = true;
-
-    
   }
   else
   {
     hasWifi = false;
     Screen.print(1, "No Wi-Fi");
   }
+
+
+  i2c = new DevI2C(D14, D15);
+  sensor = new HTS221Sensor(*i2c);
+   init the sensor
+  sensor -> init(NULL);
 }
 
 void loop() {
 
-  //float temp = readTemperature();
-
-  // put your main code here, to run repeatedly:
-  //Screen.print(1, "In loop()");
-  //delay(500);
-
-  //sprintf_P
-  
-  //int temp = getDevKitTemperatureValue(0);
-  //char buf[10];
-
-
-  //showHumidTempSensor();
-
-
-  //sprintf_P(buf, "%d", temp);
-  //const char * readTemp = ("", temp, "");
- // Screen.print(1, buf);
-
-  // delay(250);
-
-  // if (!hasIoTHub) {
-  //   Screen.print(1, "hasIoTHub false");
-  //   delay(250);
-  // } else {
-  //   Screen.print(1, "hasIoTHub");
-  //   delay(250);
-  // }
-
-  // if (!hasWifi) {
-  //   Screen.print(1, "hasWifi false");
-  //   delay(250);
-  // } else {
-  //   Screen.print(1, "hasWifi");
-  //   delay(250);
-  // }
+  sensor -> enable();
+  sensor -> readId(&id);
+  sensor -> getTemperature(&temperature);
+  //temperature = readTemperature();
 
   if (hasIoTHub && hasWifi)
   {
     char buff[128];
 
-    //Get data from temp sensor
-    
-    //Screen.print(1, "Before send");
+    char res[8];
+  
+    dtostrf(temperature, 5, 2, res);
 
-    // replace the following line with your data sent to Azure IoTHub
+    //char toSend[128];
 
-    int temp = getDevKitTemperatureValue(0);
-    const char * a = ("{\"temp\": \"", temp, ":\"}");
+    const char * a = ("{\"temp\": \"", res, ":\"}");
+    //const char * a =     
 
-    //snprintf(buff, 128, "{\"topic\":\"iot\"}");
-    snprintf_P(buff, 128, a);
+    Screen.print(1, res);
+    delay(500);
+    Screen.print(1, a);
     
     //if (DevKitMQTTClient_SendEvent(buff))
-    if (DevKitMQTTClient_SendEvent(buff))
+    if (DevKitMQTTClient_SendEvent(a))
     {
       Screen.print(1, "Sending...");
     }
@@ -101,6 +85,6 @@ void loop() {
     {
       Screen.print(1, "Failure...");
     }
-    delay(2000);
+    delay(5000);
   }
 }
