@@ -23,9 +23,9 @@ namespace IoTHubEvents
 
             message.SystemProperties.TryGetValue("iothub-enqueuedtime", out var props);
 
-            var timestamp = props.ToString();
+            var date = props.ToString();
 
-            log.LogInformation($"C# IoT Hub trigger function processed a message: {Encoding.UTF8.GetString(message.Body.Array)} on {timestamp}");
+            log.LogInformation($"C# IoT Hub trigger function processed a message: {Encoding.UTF8.GetString(message.Body.Array)} on {date}");
 
             //var data = JSON.parse(message.Body.Array
 
@@ -45,7 +45,7 @@ namespace IoTHubEvents
                 var tempStr = Encoding.UTF8.GetString(message.Body.Array);
                 var messageObject = JsonConvert.DeserializeObject<SensorData>(tempStr);
 
-                messageObject.timestamp = timestamp;
+                messageObject.date = date;
 
                 //Random cooling tower
                 Random rnd = new Random();
@@ -95,7 +95,7 @@ namespace IoTHubEvents
     {
         public String location { get; set; }
         public double temperature { get; set; }
-        public String timestamp { get; set; }
+        public String date { get; set; }
     }
 
     
