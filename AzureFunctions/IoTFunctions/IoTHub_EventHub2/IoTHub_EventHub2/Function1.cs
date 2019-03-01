@@ -18,7 +18,7 @@ namespace IoTHub_EventHub2
 
         //public static async void Run(string myIoTHubMessage, ILogger log)
         //public static async void Run([EventHubTrigger("samples-workitems", Connection = "HostName=SpiderPigs-IoT-Hub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=62326EMrXhsb61Ez5s4f8nbJYeTUs31FjgSM1U8Kh8A=")]string myIoTHubMessage, TraceWriter log)
-        public static async void Run([EventHubTrigger("samples-workitems")]string myIoTHubMessage, ILogger log)
+        public static async void Run([EventHubTrigger("samples-workitems", Connection = "EventHubConnection")]string myIoTHubMessage, ILogger log)
         {
             var apiUrl = System.Environment.GetEnvironmentVariable("apiUrl");
             
