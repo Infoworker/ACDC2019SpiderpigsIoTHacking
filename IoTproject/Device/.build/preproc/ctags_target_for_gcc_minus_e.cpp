@@ -74,11 +74,11 @@ void loop() {
     dtostrf(temperature, 4, 2, res);
 
     char toSend[128];
-    strcpy(toSend, "{\"temp\": \"");
+    strcpy(toSend, "{\"temperature\": \"");
     strcat(toSend, res);
-    strcat(toSend, ":\"}");
+    strcat(toSend, "\"}");
 
-    const char * a = ("{\"temp\": \"", res, ":\"}");
+    const char * a = ("{\"temperature\": \"", res, "\"}");
     //const char * a =     
 
     Screen.print(1, res);
@@ -95,6 +95,6 @@ void loop() {
     {
       Screen.print(1, "Failure...");
     }
-    delay(5000);
+    delay(10000);
   }
 }
