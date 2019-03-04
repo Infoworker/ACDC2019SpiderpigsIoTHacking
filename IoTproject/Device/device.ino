@@ -8,17 +8,10 @@
 #include "telemetry.h"
 
 #include "HTS221Sensor.h"
+//#include "LPS22HBSensor.h"
 
 DevI2C *i2c;
 HTS221Sensor *sensor;
-
-
-
-//#include "config.h"
-//#include "utility.h"
-//#include "SystemTickCounter.h"
-
-
 
 unsigned char id;
 float temperature = 0;
@@ -26,7 +19,6 @@ static bool hasWifi = false;
 static bool hasIoTHub = false;
 
 void setup() {
-  // put your setup code here, to run once:
   if (WiFi.begin() == WL_CONNECTED)
   {
     hasWifi = true;
@@ -57,7 +49,8 @@ void loop() {
   sensor -> enable();
   sensor -> readId(&id);
   sensor -> getTemperature(&temperature);
-  //temperature = readTemperature();
+
+
 
   if (hasIoTHub && hasWifi)
   {
@@ -89,6 +82,6 @@ void loop() {
     {
       Screen.print(1, "Failure...");
     }
-    delay(10000);
+    delay(120000);
   }
 }

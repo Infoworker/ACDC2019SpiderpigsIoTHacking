@@ -97,7 +97,7 @@ void loop() {
     {
       Screen.print(1, "Failure...");
     }
-    delay(10000);
+    delay(120000);
   }
 }
 

@@ -50,7 +50,7 @@ namespace IoTHubEvents
                 //Random cooling tower
                 Random rnd = new Random();
 
-                messageObject.location = "Cooling tower " + rnd.Next(1, 3);
+                messageObject.location = "Cooling tower " + rnd.Next(1, 3); //"Cooling tower " + rnd.Next(1, 3);
 
                 using (var client = new HttpClient())
                 {
